@@ -1,15 +1,15 @@
-require 'webtester'
+require 'shiken'
 
 RSpec.configure do |config|
 
   config.before :suite do |x|
      # puts "*** before suite" 
-     WT::init()    
+     SK::init()    
   end
    
   config.after :suite do |x|
     # puts "*** after suite"
-    WT::quit()
+    SK::quit()
   end
           
   config.expect_with :rspec do |expectations|

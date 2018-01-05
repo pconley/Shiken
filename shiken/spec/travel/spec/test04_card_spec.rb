@@ -15,24 +15,24 @@ describe "Travel Card Page" do
   end
 
 	it "Has A Title" do
-		expect(WT::Browser.title).to eq("Agile Travel")
+		expect(SK::Browser.title).to eq("Agile Travel")
 	end
   
 	it "Must Contain The Labels" do
-		expect(WT::Browser).to have_content("Pay by Credit Card")
-		expect(WT::Browser).to have_content("Card type: ")
-		expect(WT::Browser).to have_content("Card number: ")
+		expect(SK::Browser).to have_content("Pay by Credit Card")
+		expect(SK::Browser).to have_content("Card type: ")
+		expect(SK::Browser).to have_content("Card number: ")
 	end
 
  	it "fill visa credit card details" do
     $TravelCardPage.fill_card_details('visa')
     sleep 5 # seems to take a really long time to return
-		expect(WT::Browser).to have_content("Confirmation")
+		expect(SK::Browser).to have_content("Confirmation")
 	end
 
 	it "fill master credit card details" do
     $TravelCardPage.fill_card_details('master')
     sleep 5 # seems to take a really long time to return
-		expect(WT::Browser).to have_content("Confirmation")
+		expect(SK::Browser).to have_content("Confirmation")
 	end
 end

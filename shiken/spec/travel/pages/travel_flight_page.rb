@@ -11,28 +11,28 @@ class TravelFlightPage < TravelBasePage
 	end
   
   def trip_type
-    WT::RadioSet.new({name: 'tripType'})
+    SK::RadioSet.new({name: 'tripType'})
   end
   def orig_port
-    WT::Dropdown.new({ name: "fromPort" })
+    SK::Dropdown.new({ name: "fromPort" })
   end
   def dest_port
-    WT::Dropdown.new({ name: "toPort" })
+    SK::Dropdown.new({ name: "toPort" })
   end
   def depart_day
-    WT::Dropdown.new({ id: "departDay" })
+    SK::Dropdown.new({ id: "departDay" })
   end
   def depart_month
-    WT::Dropdown.new({ id: "departMonth" })
+    SK::Dropdown.new({ id: "departMonth" })
   end
   def return_day
-    WT::Dropdown.new({ id: "returnDay" })
+    SK::Dropdown.new({ id: "returnDay" })
   end
   def return_month
-    WT::Dropdown.new({ id: "returnMonth" })
+    SK::Dropdown.new({ id: "returnMonth" })
   end
   def continue_button
-    WT::Browser.find({ type: "submit" })
+    SK::Browser.find({ type: "submit" })
   end
   
   

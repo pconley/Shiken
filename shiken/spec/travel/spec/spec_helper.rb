@@ -1,5 +1,5 @@
 #require_relative '../spec_helper.rb'
-require 'webtester'
+require 'shiken'
 
 # add pages to the load path
 dir = File.dirname(__FILE__)
@@ -19,12 +19,12 @@ RSpec.configure do |config|
 
   config.before :suite do |x|
      # puts "*** before suite"
-     WT::init()
+     SK::init()
   end
 
   config.after :suite do |x|
     # puts "*** after suite"
-    WT::quit()
+    SK::quit()
   end
           
   config.expect_with :rspec do |expectations|
@@ -38,10 +38,10 @@ RSpec.configure do |config|
 end
 
 def trace(text)
-  WT::Trace.trace(text)
+  SK::Trace.trace(text)
 end
 
 def pause(s,text='')
-  WT::Trace.trace("pausing #{s} seconds #{text}")
+  SK::Trace.trace("pausing #{s} seconds #{text}")
   sleep s
 end

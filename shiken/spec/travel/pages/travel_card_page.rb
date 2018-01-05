@@ -15,19 +15,19 @@ class TravelCardPage < TravelBasePage
 	end
   
   def card_number
-    WT::Field.new({name: 'card_number'})
+    SK::Field.new({name: 'card_number'})
   end
   def card_type
-    WT::RadioSet.new({name: 'card_type'})
+    SK::RadioSet.new({name: 'card_type'})
   end
   def cc_month
-    WT::Dropdown.new({name: "expiry_month" })
+    SK::Dropdown.new({name: "expiry_month" })
   end
   def cc_year
-    WT::Dropdown.new({name: "expiry_year" })
+    SK::Dropdown.new({name: "expiry_year" })
   end
   def pay_button_el
-    WT::Browser.find({ type: "submit" })
+    SK::Browser.find({ type: "submit" })
   end 
     
   def fill_card_details(card)
