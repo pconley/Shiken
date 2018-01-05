@@ -1,6 +1,6 @@
 # Shiken [試験] #
 
-Shiken is a library/gem that is a ruby wrapper for selenium.  In my experience many people write "scripts" using selenium, not "tests".  The difference being you can start a set of tests and walk away... then come back and find out what passed or failed.  Scripts are something you have to watch to see what is going on.  Automation is key.
+Shiken is a ruby gem that is a wrapper for selenium.  In my experience, many people write "scripts" using selenium - not "tests".  The difference being you can start a set of tests and walk away... then come back and find out what passed or failed.  Scripts are something you have to watch to see what is going on.  Using rspec is key to writing tests.
 
 There are other similar frameworks... this is just my own way of digging into automation test and techniques (and ruby code for that matter).
 
@@ -27,16 +27,15 @@ Shiken is the Japanese word for test.
 
 ## Dev Notes : the gem
 
-This page/folder is for the developer that wants to look into the gem... not the tester who uses the gem. 
-See the "travel" folder for exampls and documentation on how to make use of the gem.
+This site is for the developer that wants to look into the gem... not the tester who uses the gem. See the companion github page called ShikenExamples for stand alone examples of how to use of the gem with rspec.
 
-# gem basics
+### gem basics
 
 gem list           # see list of install
 gem cleanup xxx    # remove all old versions of the gem
 gem uninstall xxx  # choose which ones you want to remove
 
-# dependencies
+### dependencies
 
 colorize (for pretty output)
 

@@ -8,19 +8,19 @@ Gem::Specification.new do |s|
   s.email       = 'pconley312@gmail.com'
   s.files       = [
     "lib/shiken.rb",
-    "lib/shiken/trace.rb",
-    "lib/shiken/element.rb",
-    "lib/shiken/field.rb",
-    "lib/shiken/link.rb",
-    "lib/shiken/clickable.rb",
-    "lib/shiken/button.rb",
-    "lib/shiken/radio_set.rb",
-    "lib/shiken/dropdown.rb",
-    "lib/shiken/page.rb",
-    "lib/shiken/kendo.rb",
-    "lib/shiken/table.rb",
-    "lib/shiken/browser.rb",
-    "lib/shiken/downloads.rb"
+    "lib/trace.rb",
+    "lib/element.rb",
+    "lib/field.rb",
+    "lib/link.rb",
+    "lib/clickable.rb",
+    "lib/button.rb",
+    "lib/radio_set.rb",
+    "lib/dropdown.rb",
+    "lib/page.rb",
+    "lib/kendo.rb",
+    "lib/table.rb",
+    "lib/browser.rb",
+    "lib/downloads.rb"
   ]
   s.homepage    = 'https://github.com/pconley/Shiken.git'
   s.license     = 'MIT'
