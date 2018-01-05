@@ -1,6 +1,6 @@
 # Shiken [試験] #
 
-Shiken is a test library that is a ruby/rspec wrapper for selenium.  In my experience many people write "scripts" using selenium, not "tests".  The difference being you can start a set of tests and walk away... then come back and find out what passed or failed.  Scripts are something you have to watch to see what is going on.  Automation is key.
+Shiken is a library/gem that is a ruby wrapper for selenium.  In my experience many people write "scripts" using selenium, not "tests".  The difference being you can start a set of tests and walk away... then come back and find out what passed or failed.  Scripts are something you have to watch to see what is going on.  Automation is key.
 
 There are other similar frameworks... this is just my own way of digging into automation test and techniques (and ruby code for that matter).
 
@@ -28,7 +28,7 @@ Shiken is the Japanese word for test.
 
 ### Who do I talk to? ###
 
-* Pat Conley
+* Pat Conley pconley312@gmail.com
 
 ### A simple rspec example ###
 So, what would a test look like using shiken?  This is an example from the travel project that uses the session and page objects to extract the test(s) from the (resuable) login/out steps and specific page elements.  This example has 4 independent tests... each wrapped in the start and stop of a session.
