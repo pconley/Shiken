@@ -1,14 +1,63 @@
-# README #
+# 試験（しけん) [shiken] : Japanes for test
 
-Shiken is a wepage test library that is a Ruby wrapper for selenium.
+Shiken is a test library that is a ruby/rspec wrapper for selenium.  
+In my experience many people write "scripts" using selenium, not "tests".  The
+difference being you can start a set of test and walk away... come back and
+find out what passed or failed.  Scripts are something you have to watch to
+see what is goin on.
 
-試験（しけん)
+There are other similar frameworks... this is just my own way of digging into 
+automation test and techniques (and ruby code for that matter).
 
-### What is this repository for? ###
+This framework suppors "page oriented" testing.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### the simple rspec example ###
+
+
+```
+#!ruby
+
+require 'spec_helper.rb'
+
+describe "Agile Travel - Select Flight Page" do
+	
+	before :each do
+		TravelSession.start()
+    	$TravelFlightPage.goto
+    	expect($TravelFlightPage).to be_present
+	end
+  
+  	after :each do
+		TravelSession.stop
+  	end
+	
+	it "has correct title" do
+		expect($TravelFlightPage.title).to eq("Agile Travel")
+	end
+  
+	it "has expected labels" do
+		expect($TravelFlightPage).to have_content("Select Flight")
+		expect($TravelFlightPage).to have_content("Trip type:")
+		expect($TravelFlightPage).to have_content("Departing: ")
+	end
+
+	it "can fill two-way and get to passenger" do
+    	$TravelFlightPage.fill_flight_return_details
+		expect($TravelPassengerPage).to be_present
+  	end
+  
+  	it "can fill one-way and get to passenger" do
+    	$TravelFlightPage.fill_flight_oneway_details
+		expect($TravelPassengerPage).to be_present
+  	end
+end
+
+```
+
+### Folders ###
+
+* shiken... for the developer/colaborator
+* travel... an example project using shiken
 
 ### How do I get set up? ###
 
@@ -21,61 +70,10 @@ Shiken is a wepage test library that is a Ruby wrapper for selenium.
 
 ### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* there are currently no contributors... be the first!
+
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Pat Conley
 
-### API Entry Points ###
-
-```
-#!ruby
-
-SK::init
-SK::quit
-SK::Trace
-SK::Browser
-SK::RadioSet
-SK::Dropdown
-```
-*** rspec spec helper ***
-
-Usually you want to use one browser session for an entire test suite execution, so you will put the init and quit into the spec_helper
-
-```
-#!ruby
-
-RSpec.configure do |config|
-     
-  config.before :suite do
-     SK::init()
-  end
-
-  config.after :suite do
-    SK::quit()
-  end
-        
-end
-```
-
-### SK::Trace ###
-
-You can turn on/off the WT internal tracing by by setting the trace level using either a symbol or a number.  Normally, it is a good idea to leave the default set to :warn
-
-
-```
-#!ruby
-
-SK::Trace.level = :debug # 3
-SK::Trace.level = :warn  # 2 is the default
-SK::Trace.level = :error # 1 
-SK::Trace.level = :quiet # 0
-SK::Trace.level = 3 # all tracing
-SK::Trace.level = 2 # warnings and errors
-SK::Trace.level = 1 # just errors
-SK::Trace.level = 0 # no output
-```

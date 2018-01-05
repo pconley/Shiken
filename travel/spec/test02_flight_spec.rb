@@ -4,13 +4,13 @@ describe "Agile Travel - Select Flight Page" do
 	
 	before :each do
 		TravelSession.start()
-    $TravelFlightPage.goto
-    expect($TravelFlightPage).to be_present
+    	$TravelFlightPage.goto
+    	expect($TravelFlightPage).to be_present
 	end
   
-  after :each do
+  	after :each do
 		TravelSession.stop
-  end
+  	end
 	
 	it "has correct title" do
 		expect($TravelFlightPage.title).to eq("Agile Travel")
@@ -23,12 +23,12 @@ describe "Agile Travel - Select Flight Page" do
 	end
 
 	it "can fill two-way and get to passenger" do
-    $TravelFlightPage.fill_flight_return_details
+    	$TravelFlightPage.fill_flight_return_details
 		expect($TravelPassengerPage).to be_present
-  end
+  	end
   
-  it "can fill one-way and get to passenger" do
-    $TravelFlightPage.fill_flight_oneway_details
+  	it "can fill one-way and get to passenger" do
+    	$TravelFlightPage.fill_flight_oneway_details
 		expect($TravelPassengerPage).to be_present
-  end
+  	end
 end
