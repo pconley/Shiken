@@ -14,17 +14,17 @@ describe "Travel Passenger Page" do
   end
 
 	it "Has A Title" do
-		expect(WT::Browser.title).to eq("Agile Travel")
+		expect(SK::Browser.title).to eq("Agile Travel")
 	end
   
 	it "Must Contain The Labels" do
-		expect(WT::Browser).to have_content("Passenger Details")
-		expect(WT::Browser).to have_content("First name:")
-		expect(WT::Browser).to have_content("Last name:")
+		expect(SK::Browser).to have_content("Passenger Details")
+		expect(SK::Browser).to have_content("First name:")
+		expect(SK::Browser).to have_content("Last name:")
 	end
 
  	it "fill the passenger details page" do
     $TravelPassengerPage.fill_passenger_details('pat','conley')
-		expect(WT::Browser).to have_content("Pay by Credit Card")
+		expect(SK::Browser).to have_content("Pay by Credit Card")
 	end
 end

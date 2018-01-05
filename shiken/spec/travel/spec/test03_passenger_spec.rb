@@ -2,18 +2,18 @@ require_relative 'spec_helper.rb'
 
 describe "Travel Passenger Page" do
 	
-	before :each do
-		TravelSession.start()
+  before :each do
+	TravelSession.start()
     $TravelFlightPage.goto
     expect($TravelFlightPage).to be_present
     $TravelFlightPage.fill_flight_return_details
-	end
+  end
   
   after :each do
-		TravelSession.stop
+	TravelSession.stop
   end
 
-	it "Has A Title" do
+	it "has the expected title" do
 		expect(SK::Browser.title).to eq("Agile Travel")
 	end
   
@@ -24,7 +24,7 @@ describe "Travel Passenger Page" do
 	end
 
  	it "fill the passenger details page" do
-    $TravelPassengerPage.fill_passenger_details
+    	$TravelPassengerPage.fill_passenger_details
 		expect(SK::Browser).to have_content("Pay by Credit Card")
 	end
 end

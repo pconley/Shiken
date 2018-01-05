@@ -7,13 +7,13 @@ class TravelLoginPage < TravelBasePage
   end
   
   def username
-    WT::Field.new({ id: 'username' })
+    SK::Field.new({ id: 'username' })
   end
   def password
-    WT::Field.new({ id: 'password' })
+    SK::Field.new({ id: 'password' })
   end
   def login_button
-    WT::Button.new({ type: "submit" })
+    SK::Button.new({ type: "submit" })
   end
   
   def fill_and_submit(user=$good_user, pass=$good_pass)

@@ -9,11 +9,14 @@ RSpec.describe 'SK API' do
   it "has expected API" do
     expect(SK::Page).to_not be_nil
     expect(SK::Field).to_not be_nil
+    expect(SK::Link).to_not be_nil
+    expect(SK::Table).to_not be_nil
     expect(SK::Trace).to_not be_nil
     expect(SK::Button).to_not be_nil
     expect(SK::Element).to_not be_nil
     expect(SK::RadioSet).to_not be_nil
     expect(SK::Dropdown).to_not be_nil
+    expect(SK::Clickable).to_not be_nil
   end
   
   it "has kendo API support" do

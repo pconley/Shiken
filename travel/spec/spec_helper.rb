@@ -1,4 +1,4 @@
-require 'webtester'
+require 'shiken'
 
 def trace(s)
   puts ">>> #{s}"
@@ -21,12 +21,12 @@ RSpec.configure do |config|
 
   config.before :suite do |x|
      trace "before travel suite" 
-     WT::init()    
+     SK::init()    
   end
    
   config.after :suite do |x|
     trace "after travel suite"
-    WT::quit()
+    SK::quit()
   end
           
   config.expect_with :rspec do |expectations|

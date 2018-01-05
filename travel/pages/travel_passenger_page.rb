@@ -15,14 +15,14 @@ class TravelPassengerPage < TravelBasePage
 	end
   
   def next_button_el
-    WT::Browser.find({ type: "submit" })
+    SK::Browser.find({ type: "submit" })
   end
   	
   def fill_passenger_details(fname,lname)
     # trace('adding passenger details:  start')
-  	WT::Browser.set(FNAME_FIELD, fname)
-    WT::Browser.set(LNAME_FIELD, lname)
-    #WT::Browser.click(NEXT_BUTTON)
+  	SK::Browser.set(FNAME_FIELD, fname)
+    SK::Browser.set(LNAME_FIELD, lname)
+    #SK::Browser.click(NEXT_BUTTON)
     next_button_el.click()
     sleep 3
     # trace('adding passenger details:  finish')
