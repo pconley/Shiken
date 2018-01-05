@@ -25,7 +25,7 @@ Shiken is the Japanese word for test.
 
 * Pat Conley pconley312@gmail.com
 
-## Dev Notes : the gem
+## About the gem
 
 This site is for the developer that wants to look into the gem... not the tester who uses the gem. See the companion github page called ShikenExamples for stand alone examples of how to use of the gem with rspec.
 
@@ -47,9 +47,13 @@ I also added geckodriver to /usr/local/bin to get it working
 
 ## Build Notes
 
+I do not get back to this project but every few months, so here are some quick start notes to myself that the reader may find useful if you want to copy and adapt this code for your own use.  The real deatils for gem creation are at...
+
 [Gem Guide]: http://guides.rubygems.org/make-your-own-gem/ "details on building gems"
 
----> make your changes
+Clone me. 
+
+Make your changes... update the unit tests!
 
 Seperately run each the unit tests.
 ```
@@ -57,18 +61,20 @@ rspec spec/api		# sanity to see if installed
 rspec spec/google	# can we create a simple session
 rspec spec/travel	# full blown set of feature tests
 ```
---> change the shiken.gemspec file to update the version
---> be positioned in the shiken directory (where gemspec file is)
+Change the shiken.gemspec file to update the version. Note: be positioned in the top directory (where gemspec file lives).
 ```
 gem build shiken.gemspec
 ```
----> the gemfile is now present in the same directory
+The new gemfile is now present in the same directory.  You can install from the current directory.
 ```
 sudo gem install ./shiken-0.0.X.gem
 ```
-// to confirm... and there may be older versions
+You can confirm what is installed... and there may be older versions
 ```
 gem list | grep shiken
+```
+The real developer (me) can then push the gem to the public repository.
+```
 gem push shiken-0.0.4.gem    # to push to rubygems.org
 ```
 ### A simple rspec example ###
