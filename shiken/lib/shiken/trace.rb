@@ -1,6 +1,6 @@
 require 'colorize'
 
-module WT::Trace
+module SK::Trace
   
   DEBUG = 3
   WARN  = 2
@@ -32,19 +32,19 @@ module WT::Trace
   end
   
   def trace(s)
-    write "WT::Trace : #{s}".cyan, DEBUG
+    write "SK::Trace : #{s}".cyan, DEBUG
   end  
   def debug(s)
-    write "WT::Debug : #{s}".cyan, DEBUG
+    write "SK::Debug : #{s}".cyan, DEBUG
   end
   def error(s)
-    write "WT::Error: #{s}".red, ERROR
+    write "SK::Error: #{s}".red, ERROR
   end
   def notice(s)
-    write "WT::Notice: #{s}".yellow, WARN
+    write "SK::Notice: #{s}".yellow, WARN
   end
   def warn(s)
-    write "WT::Warn  : #{s}".yellow, WARN
+    write "SK::Warn  : #{s}".yellow, WARN
   end
   
   def write(text,lev)

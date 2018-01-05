@@ -2,14 +2,14 @@ require 'selenium-webdriver'
 
 # NOTE: the requires are at bottom
 
-module WT
+module SK
   
   @driver = nil
   
   extend self
         
   def version
-    v = "0.0.2"
+    v = "0.0.1"
     # Trace.trace "version: #{v}"
     return v
   end
@@ -19,14 +19,14 @@ module WT
     # browser_stack_url = "http://patconley2:LBqJyYGj5TsyNBWe2Bjy@hub.browserstack.com/wd/hub"
     # $driver = Selenium::WebDriver.for(:remote, :url => browser_stack_url)
     
-    # Trace.trace "WT::init"
+    # Trace.trace "SK::init"
     # seconds = max time to wait for the element to appear
     wait = Selenium::WebDriver::Wait.new(:timeout => seconds)
         
     profile = Selenium::WebDriver::Firefox::Profile.new
     profile["javascript.enabled"] = false # NOT SURE WHY????
-    # trace "wt init download path = #{WT::Downloads.path}"
-    profile['browser.download.dir'] = WT::Downloads.path
+    # trace "wt init download path = #{SK::Downloads.path}"
+    profile['browser.download.dir'] = SK::Downloads.path
     #
     # # The value of browser.download.folderList can be set to either 0, 1, or 2.
     # # When set to 0, Firefox will save all files downloaded via the browser on the
@@ -57,7 +57,7 @@ module WT
   end
   
   def quit
-    # Trace.trace "WT::quit"
+    # Trace.trace "SK::quit"
     driver.quit if driver 
     @driver = nil 
   end
@@ -68,16 +68,16 @@ module WT
     
 end
 
-require 'webtester/trace'
-require 'webtester/browser'
-require 'webtester/page'
-require 'webtester/element'
-require 'webtester/field'
-require 'webtester/clickable'
-require 'webtester/button'
-require 'webtester/link'
-require 'webtester/dropdown'
-require 'webtester/radio_set'
-require 'webtester/kendo'
-require 'webtester/table'
-require 'webtester/downloads'
+require 'shiken/trace'
+require 'shiken/browser'
+require 'shiken/page'
+require 'shiken/element'
+require 'shiken/field'
+require 'shiken/clickable'
+require 'shiken/button'
+require 'shiken/link'
+require 'shiken/dropdown'
+require 'shiken/radio_set'
+require 'shiken/kendo'
+require 'shiken/table'
+require 'shiken/downloads'

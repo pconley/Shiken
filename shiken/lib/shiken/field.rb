@@ -1,4 +1,4 @@
-class WT::Field < WT::Element
+class SK::Field < SK::Element
   
   def initialize(locator)
     super(locator) # creates the el and locator
@@ -9,7 +9,7 @@ class WT::Field < WT::Element
       self.el.clear
       self.el.send_keys(value)
     else
-      WT::Trace.error "WT::Field.set: element not initialized for #{locator}"
+      SK::Trace.error "SK::Field.set: element not initialized for #{locator}"
     end
   end
     

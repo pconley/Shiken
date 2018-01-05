@@ -1,4 +1,4 @@
-class WT::Element
+class SK::Element
   
   def initialize(arg,src="xxx")
     # puts "element init arg=#{arg} src=#{src}"
@@ -12,9 +12,9 @@ class WT::Element
       @el = arg
     else # it is a locator
       @locator = arg # remember
-      @el = WT::Browser.find(arg)
-      WT::Trace.debug "element locator=#{arg} el=#{@el}"
-      WT::Trace.warn "element failed to initialize with locator = #{arg}" unless @el
+      @el = SK::Browser.find(arg)
+      SK::Trace.debug "element locator=#{arg} el=#{@el}"
+      SK::Trace.warn "element failed to initialize with locator = #{arg}" unless @el
     end
   end
   
@@ -22,7 +22,7 @@ class WT::Element
   attr_reader :locator
   
   def to_s
-    "<WT::Element #{locator}>"
+    "<SK::Element #{locator}>"
   end
 
   def exists?
@@ -32,7 +32,7 @@ class WT::Element
 
   def displayed?
     puts "+++ element displayed?"
-    WT::Browser.rescue_exceptions { self.el.displayed? } 
+    SK::Browser.rescue_exceptions { self.el.displayed? } 
   end
   
   def html
@@ -54,7 +54,7 @@ class WT::Element
     str1.gsub(/\n+/, " ").strip # remove new lines
   end
   
-  def find(locator,klass=WT::Element)
+  def find(locator,klass=SK::Element)
     # trace "find #{locator} in #{self.locator}"
     child_el = find_child_el(locator)
     # trace "child el = #{child_el}"
@@ -74,13 +74,13 @@ class WT::Element
         search(:type,locator[:type]) 
       else
         # a standard selenium locator so just use selenium
-        WT::Browser.rescue_exceptions { self.el.find_element(locator) } 
+        SK::Browser.rescue_exceptions { self.el.find_element(locator) } 
       end
   end
 
-  def children(locator,klass=WT::Element)
+  def children(locator,klass=SK::Element)
       # get the matching children elements
-      els = WT::Browser.rescue_exceptions { self.el.find_elements(locator) } 
+      els = SK::Browser.rescue_exceptions { self.el.find_elements(locator) } 
       # but return as one of our class types
       els.map { |el| klass.new(el) }
   end

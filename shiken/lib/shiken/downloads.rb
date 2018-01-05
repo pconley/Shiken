@@ -1,4 +1,4 @@
-module WT::Downloads
+module SK::Downloads
   
   @path = nil
 

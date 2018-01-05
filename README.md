@@ -1,6 +1,8 @@
 # README #
 
-GEM Version of the the webtest framework
+Shiken is a wepage test library that is a Ruby wrapper for selenium.
+
+試験（しけん)
 
 ### What is this repository for? ###
 
@@ -33,12 +35,12 @@ GEM Version of the the webtest framework
 ```
 #!ruby
 
-WT::init
-WT::quit
-WT::Trace
-WT::Browser
-WT::RadioSet
-WT::Dropdown
+SK::init
+SK::quit
+SK::Trace
+SK::Browser
+SK::RadioSet
+SK::Dropdown
 ```
 *** rspec spec helper ***
 
@@ -50,17 +52,17 @@ Usually you want to use one browser session for an entire test suite execution, 
 RSpec.configure do |config|
      
   config.before :suite do
-     WT::init()
+     SK::init()
   end
 
   config.after :suite do
-    WT::quit()
+    SK::quit()
   end
         
 end
 ```
 
-### WT::Trace ###
+### SK::Trace ###
 
 You can turn on/off the WT internal tracing by by setting the trace level using either a symbol or a number.  Normally, it is a good idea to leave the default set to :warn
 
@@ -68,12 +70,12 @@ You can turn on/off the WT internal tracing by by setting the trace level using 
 ```
 #!ruby
 
-WT::Trace.level = :debug # 3
-WT::Trace.level = :warn  # 2 is the default
-WT::Trace.level = :error # 1 
-WT::Trace.level = :quiet # 0
-WT::Trace.level = 3 # all tracing
-WT::Trace.level = 2 # warnings and errors
-WT::Trace.level = 1 # just errors
-WT::Trace.level = 0 # no output
+SK::Trace.level = :debug # 3
+SK::Trace.level = :warn  # 2 is the default
+SK::Trace.level = :error # 1 
+SK::Trace.level = :quiet # 0
+SK::Trace.level = 3 # all tracing
+SK::Trace.level = 2 # warnings and errors
+SK::Trace.level = 1 # just errors
+SK::Trace.level = 0 # no output
 ```

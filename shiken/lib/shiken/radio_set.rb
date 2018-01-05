@@ -1,8 +1,8 @@
-class WT::RadioSet
+class SK::RadioSet
   
   def initialize(locator)
     # get all the elements for the radio
-    @els = WT::Browser.all(locator)
+    @els = SK::Browser.all(locator)
     # trace("radio els = #{@els}")
   end
   

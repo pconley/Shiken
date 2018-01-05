@@ -1,8 +1,8 @@
 require 'selenium-webdriver'
-require 'webtester/trace'
+require 'shiken/trace'
 require 'uri'
 
-module WT::Browser
+module SK::Browser
   
   extend self 
   
@@ -13,13 +13,13 @@ module WT::Browser
     sleep secs
   end
   def trace(s)
-    WT::Trace.trace(s)
+    SK::Trace.trace(s)
   end
   def error(s)
-    WT::Trace.error(s)
+    SK::Trace.error(s)
   end
   def warn(s)
-    WT::Trace.notice(s)
+    SK::Trace.notice(s)
   end
   
   ###### main stuff #########
@@ -33,12 +33,12 @@ module WT::Browser
   def gotourl(url,seconds=1)
     uri = URI.escape(url)
     puts("go to #{uri}")
-    rescue_exceptions { WT::driver.get uri }
+    rescue_exceptions { SK::driver.get uri }
     sleep seconds
   end
     
   def option(dd)
-      warn "browser.option is depricated. use WT::Dropdown instead"
+      warn "browser.option is depricated. use SK::Dropdown instead"
       Selenium::WebDriver::Support::Select.new(dd)
    end
 
@@ -47,7 +47,7 @@ module WT::Browser
   end
 
   def dropdown(locator,tagname,list_option)
-      warn "browser.dropdown is depricated. use WT::Dropdown instead. locator=#{locator}"
+      warn "browser.dropdown is depricated. use SK::Dropdown instead. locator=#{locator}"
       # actually returns the option object for the dropdown
       # so the calling code can chain a select by method
       # option(find({name: name}))
@@ -96,7 +96,7 @@ module WT::Browser
     end
 
     def radio(locator)
-      warn "browser.radio is depricated. use WT::RadioSet instead. locator=#{locator}"
+      warn "browser.radio is depricated. use SK::RadioSet instead. locator=#{locator}"
       self.click(locator,0)
     end
 
@@ -208,13 +208,13 @@ module WT::Browser
     ### Actions ####
     
     def click(locator,pause=0)
-      WT::Trace.trace("*** click is depricated")
+      SK::Trace.trace("*** click is depricated")
       el = find(locator)
       _click_el(el,pause) if el
     end
     
     def _click_el(el,extra)
-      WT::Trace.trace("*** click_el")
+      SK::Trace.trace("*** click_el")
       rescue_exceptions { el.click }
       sleep 1+extra
       self
@@ -251,7 +251,7 @@ module WT::Browser
     ### Simple Accessors ####
 
     def driver
-      WT::driver
+      SK::driver
     end    
     def source
       driver.page_source

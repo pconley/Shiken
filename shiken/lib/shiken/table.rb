@@ -1,4 +1,4 @@
-class WT::Cell < WT::Element
+class SK::Cell < SK::Element
 
   # row is an element that "remembers" it's index in the row
 
@@ -16,12 +16,12 @@ class WT::Cell < WT::Element
   end
 
   def to_s
-    "<WT::Cell #{@index} [#{self.text}]>"
+    "<SK::Cell #{@index} [#{self.text}]>"
   end
 
 end
 
-class WT::Row < WT::Element
+class SK::Row < SK::Element
 
   # row is an element that "remembers" it's index in the table
 
@@ -34,22 +34,22 @@ class WT::Row < WT::Element
 
   def cells()
     ds = self.el.find_elements({tag_name: 'td'})
-    ds.map.with_index { |e,i| WT::Cell.new(e,i) }
+    ds.map.with_index { |e,i| SK::Cell.new(e,i) }
   end
 
   def to_s
     text = cells.map { |cell| cell.text }.join("][")
-    "<WT::Row #{@index} [#{text}] >"
+    "<SK::Row #{@index} [#{text}] >"
   end
 end
 
-class WT::Table < WT::Element
+class SK::Table < SK::Element
 
   def rows
     rs = self.el.find_elements({tag_name: 'tr'})
-    WT::Trace.debug "WT::Table el rows length = #{rs.length}"
-    ws = rs.map.with_index { |r,i| WT::Row.new(r,i) } 
-    WT::Trace.debug "WT::Table wt rows length = #{ws.length}"
+    SK::Trace.debug "SK::Table el rows length = #{rs.length}"
+    ws = rs.map.with_index { |r,i| SK::Row.new(r,i) } 
+    SK::Trace.debug "SK::Table wt rows length = #{ws.length}"
     ws # returned
   end
   

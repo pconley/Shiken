@@ -1,4 +1,4 @@
-class WT::Clickable < WT::Element
+class SK::Clickable < SK::Element
 
   # a clickable element can be created with a custom delay
   # so that the tester does not have to set the delay at 
@@ -11,11 +11,11 @@ class WT::Clickable < WT::Element
   
   def click(delay = @delay)
     if self.el
-      # WT::Trace.trace "WT::Clickable.click #{self.locator} #{self.el}"
+      # SK::Trace.trace "SK::Clickable.click #{self.locator} #{self.el}"
       self.el.click
       sleep delay
     else
-      WT::Trace.error "WT::Clickable.click: element not initialized for #{locator}"
+      SK::Trace.error "SK::Clickable.click: element not initialized for #{locator}"
     end
   end
     

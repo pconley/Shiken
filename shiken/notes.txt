@@ -1,3 +1,6 @@
+*** rename Jan 2017 (Shiken)
+
+
 *** restart notes 3/4/17
 
 gem install colorize

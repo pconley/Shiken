@@ -1,8 +1,8 @@
-class WT::Dropdown < WT::Element
+class SK::Dropdown < SK::Element
   
   def initialize(locator)
     super(locator) # creates the el and locator via 
-    WT::Trace.warn "Dropdown failed to initialize. locator = #{locator}" unless el
+    SK::Trace.warn "Dropdown failed to initialize. locator = #{locator}" unless el
     @options = el.find_elements(tag_name: "option")  
   end
   

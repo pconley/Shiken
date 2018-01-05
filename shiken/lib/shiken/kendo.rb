@@ -1,4 +1,4 @@
-class WT::KElement
+class SK::KElement
   
   def initialize(el)
     @element = el
@@ -24,7 +24,7 @@ class WT::KElement
   
 end
 
-class WT::KCell < WT::KElement
+class SK::KCell < SK::KElement
   def as_num
     # trace "cell = #{cell.text}"
     sign = self.text.include?('(') ? -1 : 1
@@ -32,15 +32,15 @@ class WT::KCell < WT::KElement
   end
 end
 
-class WT::KRow < WT::KElement
+class SK::KRow < SK::KElement
   def cells()
-    self.el.find_elements({tag_name: 'td'}).collect{ |e| WT::KCell.new(e) }
+    self.el.find_elements({tag_name: 'td'}).collect{ |e| SK::KCell.new(e) }
   end
 end
 
-class WT::KGrid < WT::KElement
+class SK::KGrid < SK::KElement
   def initialize(locator={id: 'grid'})
-    super(WT::Browser.find(locator))
+    super(SK::Browser.find(locator))
   end
   def grid
     el
@@ -81,21 +81,21 @@ class WT::KGrid < WT::KElement
     set
   end
   def row(n)
-    WT::KRow.new(self.rows[n])
+    SK::KRow.new(self.rows[n])
   end
   
 end
 
-class WT::KFilter
+class SK::KFilter
   def initialize(n)
     @filter = nil # in case of error    
     # first check that the current page has a kendo grid
-    grid = WT::KGrid.new()
+    grid = SK::KGrid.new()
     return if ! grid 
     # then work our way throught the page/grid...
     # list of all the column headers; this is a little
     # fragile if the page has other tables before the grid
-    th_list = WT::Browser.all({tag_name: 'th'})
+    th_list = SK::Browser.all({tag_name: 'th'})
     return if !th_list
     return if th_list.length < n
     header = th_list[n] # the nth header for the column
@@ -109,13 +109,13 @@ class WT::KFilter
     # pause 1
   end
   def clear
-    buttons = WT::Browser.all({tag_name: 'button'})
+    buttons = SK::Browser.all({tag_name: 'button'})
     button = buttons.find { |el| el.text == 'Clear' } 
     button.click if button
     sleep 1
   end
   def select(value)
-    containers = WT::Browser.all({class: 'k-animation-container'})
+    containers = SK::Browser.all({class: 'k-animation-container'})
     container = containers.find { |c| c.displayed? }
     sleep 1 # to find the textbox???
     textbox = container.find_element({class: 'k-textbox'})
@@ -127,11 +127,11 @@ class WT::KFilter
   end
 end
 
-module WT::Kendo
+module SK::Kendo
   class << self 
   
     def grid()
-      return WT::KGrid.new()
+      return SK::KGrid.new()
     end
 
   end
