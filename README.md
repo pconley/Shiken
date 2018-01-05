@@ -1,13 +1,8 @@
 # Shiken [試験] #
 
-Shiken is a test library that is a ruby/rspec wrapper for selenium.  
-In my experience many people write "scripts" using selenium, not "tests".  The
-difference being you can start a set of tests and walk away... then come back and
-find out what passed or failed.  Scripts are something you have to watch to
-see what is going on.  Automation is key.
+Shiken is a test library that is a ruby/rspec wrapper for selenium.  In my experience many people write "scripts" using selenium, not "tests".  The difference being you can start a set of tests and walk away... then come back and find out what passed or failed.  Scripts are something you have to watch to see what is going on.  Automation is key.
 
-There are other similar frameworks... this is just my own way of digging into 
-automation test and techniques (and ruby code for that matter).
+There are other similar frameworks... this is just my own way of digging into automation test and techniques (and ruby code for that matter).
 
 Shiken is the Japanese word for test.
 
@@ -36,17 +31,16 @@ Shiken is the Japanese word for test.
 * Pat Conley
 
 ### A simple rspec example ###
+So, what would a test look like using shiken?  This is an example from the travel project that uses the session and page objects to extract the test(s) from the (resuable) login/out steps and specific page elements.  This example has 4 independent tests... each wrapped in the start and stop of a session.
 
 ```
-#!ruby
-
 require 'spec_helper.rb'
 
 describe "Agile Travel - Select Flight Page" do
 	
 	before :each do
 		TravelSession.start()
-    	$TravelFlightPage.goto
+		$TravelFlightPage.goto
     	expect($TravelFlightPage).to be_present
 	end
   
@@ -65,12 +59,12 @@ describe "Agile Travel - Select Flight Page" do
 	end
 
 	it "can fill two-way and get to passenger" do
-    	$TravelFlightPage.fill_flight_return_details
+		$TravelFlightPage.fill_flight_return_details
 		expect($TravelPassengerPage).to be_present
   	end
   
   	it "can fill one-way and get to passenger" do
-    	$TravelFlightPage.fill_flight_oneway_details
+		$TravelFlightPage.fill_flight_oneway_details
 		expect($TravelPassengerPage).to be_present
   	end
 end
