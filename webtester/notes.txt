@@ -1,0 +1,16 @@
+*** restart notes 3/4/17
+
+gem install colorize
+gem install selenium-webdriver
+added geckodriver to /usr/local/bin
+but... could only get safari to work... after setting "allow automation" on develope menu
+
+
+*** old notes
+
+
+http://guides.rubygems.org/make-your-own-gem/
+
+--- change the webtester.gemspec file
+gem build webtester.gemspec
+sudo gem install ./webtester-0.0.X.gem
