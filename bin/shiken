@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require "thor"
+ 
+class ShikenCLI < Thor
+
+  desc "hello NAME [FROM]", "say hello to NAME"
+  long_desc <<-LONGDESC
+    `shiken hello` will print out a message to a person of
+    your choosing.\n
+    You can optionally specify a second parameter, which will
+    print out a from message as well.\n
+    : $ shiken hello mike "Pat Conley"
+    \x5: from: Pat Conley
+    \x5: Hello mike!\n
+  LONGDESC
+
+  def hello(name, from=nil)
+    puts "from: #{from}" if from
+    puts "Hello #{name}!"
+  end
+
+  desc "install DIRECTORY", "create the directory with shiken helpers"
+  long_desc <<-LONGDESC
+    `shiken install` will create a subdirectory and populate it with
+    the shiken helper files.\n
+    The default directory is called webtests but the first parameter
+    is the name of the directory you prefer.\n
+    : $ shiken install my_tests
+  LONGDESC
+
+  def install(dir='webtests')
+    source = File.join(__dir__,"..","spec")
+    target = File.join(Dir.pwd, dir)
+    # puts "source = #{source}"
+    puts "creating and populating #{target}"
+	# puts "create complete [#{target}]"
+	FileUtils.copy_entry source, target
+	puts "copy complete"
+  end
+
+end
+
+ShikenCLI.start(ARGV)

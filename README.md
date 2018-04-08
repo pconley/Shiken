@@ -87,6 +87,13 @@ You can confirm what is installed... and there may be older versions
 ```
 gem list | grep shiken
 ```
+
+To un-install older versions
+```
+gem uninstall shiken --version '<0.0.8'
+```
+
+
 The real developer (me) can then push the gem to the public repository.
 ```
 gem push shiken-0.0.4.gem    # to push to rubygems.org
