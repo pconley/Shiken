@@ -53,6 +53,11 @@ class SK::Element
     # str2 = str1.gsub(/\n\s+/, " ") # shrink white space
     str1.gsub(/\n+/, " ").strip # remove new lines
   end
+
+  def empty?
+    # make the rspec read... expect(field).to be_empty
+    self.text == ''
+  end
   
   def find(locator,klass=SK::Element)
     # trace "find #{locator} in #{self.locator}"

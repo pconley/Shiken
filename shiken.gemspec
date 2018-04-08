@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'shiken'
-  s.version     = '0.0.4'
-  s.date        = '2018-01-05'
+  s.version     = '0.0.8'
+  s.date        = '2018-03-25'
   s.summary     = "A Selenium Facade in Ruby"
   s.description = "A layer to simplify ruby use of selenium"
   s.authors     = ["Pat Conley"]
@@ -24,4 +24,6 @@ Gem::Specification.new do |s|
   ]
   s.homepage    = 'https://github.com/pconley/Shiken.git'
   s.license     = 'MIT'
+  s.add_development_dependency 'colorize', '~> 0.8'
+  s.add_development_dependency "selenium-webdriver", '~> 3.8'
 end

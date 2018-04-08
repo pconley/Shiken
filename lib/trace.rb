@@ -9,7 +9,7 @@ module SK::Trace
   
   extend self
   
-  @level = DEBUG
+  @level = WARN # default
   
   def level=(value)
     case value

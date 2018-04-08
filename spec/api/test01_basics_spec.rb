@@ -38,7 +38,7 @@ RSpec.describe 'SK API' do
   end
   
   it "returns a version" do
-    expect(SK::version).to eq("0.0.1")
+    expect(SK::version).to eq("0.0.8")
   end
   
   it "can init a selenium session" do

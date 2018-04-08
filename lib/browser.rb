@@ -1,5 +1,5 @@
 require 'selenium-webdriver'
-require 'shiken/trace'
+require 'trace'
 require 'uri'
 
 module SK::Browser
@@ -32,7 +32,7 @@ module SK::Browser
   end
   def gotourl(url,seconds=1)
     uri = URI.escape(url)
-    puts("go to #{uri}")
+    trace("go to #{uri}")
     rescue_exceptions { SK::driver.get uri }
     sleep seconds
   end

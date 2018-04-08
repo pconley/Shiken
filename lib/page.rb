@@ -18,7 +18,7 @@ class SK::Page
     query = opts.map { |k,v| k.to_s+"="+v.to_s }.join("&")
     url = @url 
     url += "?" + query unless query == ""
-    trace("goto: url=#{url}")
+    SK::Trace.trace("goto: url=#{url}")
     SK::Browser.gotox(url)
   end 
 
@@ -35,13 +35,13 @@ class SK::Page
 
     # because we almost always need to see some clues when the expected page is 
     # not present we trace some outpout the the tester
-    trace "SK::Page url_match? expected: #{url} did not match current: #{SK::Browser.url}"
+    SK::Trace.trace "SK::Page url_match? expected: #{url} did not match current: #{SK::Browser.url}"
     false # returned    
   end
   
   def has_content?(content)
     result = SK::Browser.source.include? content
-    # trace "missing content = #{content}" unless result
+    # SK::Trace.trace "missing content = #{content}" unless result
     return result
   end
   

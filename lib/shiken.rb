@@ -9,7 +9,7 @@ module SK
   extend self
         
   def version
-    v = "0.0.1"
+    v = "0.0.8"
     # Trace.trace "version: #{v}"
     return v
   end
@@ -68,16 +68,16 @@ module SK
     
 end
 
-require 'shiken/trace'
-require 'shiken/browser'
-require 'shiken/page'
-require 'shiken/element'
-require 'shiken/field'
-require 'shiken/clickable'
-require 'shiken/button'
-require 'shiken/link'
-require 'shiken/dropdown'
-require 'shiken/radio_set'
-require 'shiken/kendo'
-require 'shiken/table'
-require 'shiken/downloads'
+require 'trace'
+require 'browser'
+require 'page'
+require 'element'
+require 'field'
+require 'clickable'
+require 'button'
+require 'link'
+require 'dropdown'
+require 'radio_set'
+require 'kendo'
+require 'table'
+require 'downloads'

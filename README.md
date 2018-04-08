@@ -45,6 +45,20 @@ gem install selenium-webdriver
 
 I also added geckodriver to /usr/local/bin to get it working
 
+## Tester Notes
+
+```
+config.before :suite do |x|
+    SK::init()
+    # SK.driver.manage.window.maximize # for full size browser window
+    # SK::Trace.level = SK::Trace::WARN # DEBUG > WARN > ERROR > QUIET
+  end
+   
+  config.after :suite do |x|
+    SK::quit()
+  end
+```
+
 ## Build Notes
 
 I do not get back to this project but every few months, so here are some quick start notes to myself that the reader may find useful if you want to copy and adapt this code for your own use.  The real deatils for gem creation are at...
