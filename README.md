@@ -1,140 +1,110 @@
-# Shiken [試験] #
+# shiken [![Build Status](https://secure.travis-ci.org/rspec/rspec-rails.svg?branch=master)](http://travis-ci.org/rspec/rspec-rails) [![Code Climate](https://img.shields.io/codeclimate/github/rspec/rspec-rails.svg)](https://codeclimate.com/github/rspec/rspec-rails)
+**rspec-rails** is a testing framework for Rails 3.x, 4.x and 5.0.
 
-Shiken is a ruby gem that is a wrapper for selenium.  In my experience, many people write "scripts" using selenium - not "tests".  The difference being you can start a set of tests and walk away... then come back and find out what passed or failed.  Scripts are something you have to watch to see what is going on.  Using rspec is key to writing tests.
+Use **[rspec-rails 1.x](http://github.com/dchelimsky/rspec-rails)** for Rails
+2.x.
 
-There are other similar frameworks... this is just my own way of digging into automation test and techniques (and ruby code for that matter).
+## Installation
 
-Shiken is the Japanese word for test.
+Add `shiken` to **both** the `:development` and `:test` groups in the
+`Gemfile`:
 
-### Project Design Philosopy ###
-
-* the test pyramid
-* rely on unit tests
-* but have sanity tests
-* test on production
-* use page oriented tests
-* good tests require programming
-* test clean up after themselves
-* you can run test individually
-
-### Contribution guidelines ###
-
-* there are currently no contributors... be the first!
-
-### Who do I talk to? ###
-
-* Pat Conley pconley312@gmail.com
-
-## About the gem
-
-This site is for the developer that wants to look into the gem... not the tester who uses the gem. See the companion github page called ShikenExamples for stand alone examples of how to use of the gem with rspec.
-
-### gem basics
-```
-gem list           # see list of install
-gem cleanup xxx    # remove all old versions of the gem
-gem uninstall xxx  # choose which ones you want to remove
-```
-### dependencies
-
-colorize (for pretty output)
-```
-gem install colorize
-gem install selenium-webdriver
-```
-
-I also added geckodriver to /usr/local/bin to get it working
-
-## Tester Notes
-
-```
-config.before :suite do |x|
-    SK::init()
-    # SK.driver.manage.window.maximize # for full size browser window
-    # SK::Trace.level = SK::Trace::WARN # DEBUG > WARN > ERROR > QUIET
-  end
-   
-  config.after :suite do |x|
-    SK::quit()
-  end
-```
-
-## Build Notes
-
-I do not get back to this project but every few months, so here are some quick start notes to myself that the reader may find useful if you want to copy and adapt this code for your own use.  The real deatils for gem creation are at...
-
-[Gem Guide]: http://guides.rubygems.org/make-your-own-gem/ "details on building gems"
-
-Clone me. 
-
-Make your changes... update the unit tests!
-
-Seperately run each the unit tests.
-```
-rspec spec/api		# sanity to see if installed
-rspec spec/google	# can we create a simple session
-rspec spec/travel	# full blown set of feature tests
-```
-Change the shiken.gemspec file to update the version. Note: be positioned in the top directory (where gemspec file lives).
-```
-gem build shiken.gemspec
-```
-The new gemfile is now present in the same directory.  You can install from the current directory.
-```
-sudo gem install ./shiken-0.0.X.gem
-```
-You can confirm what is installed... and there may be older versions
-```
-gem list | grep shiken
-```
-
-To un-install older versions
-```
-gem uninstall shiken --version '<0.0.8'
-```
-
-
-The real developer (me) can then push the gem to the public repository.
-```
-gem push shiken-0.0.4.gem    # to push to rubygems.org
-```
-### A simple rspec example ###
-So, what would a test look like using shiken?  This is an example from the travel project that uses the session and page objects to extract the test(s) from the (resuable) login/out steps and specific page elements.  This example has 4 independent tests... each wrapped in the start and stop of a session.
-
-```
-require 'spec_helper.rb'
-
-describe "Agile Travel - Select Flight Page" do
-	
-	before :each do
-		TravelSession.start()
-		$TravelFlightPage.goto
-    	expect($TravelFlightPage).to be_present
-	end
-  
-  	after :each do
-		TravelSession.stop
-  	end
-	
-	it "has correct title" do
-		expect($TravelFlightPage.title).to eq("Agile Travel")
-	end
-  
-	it "has expected labels" do
-		expect($TravelFlightPage).to have_content("Select Flight")
-		expect($TravelFlightPage).to have_content("Trip type:")
-		expect($TravelFlightPage).to have_content("Departing: ")
-	end
-
-	it "can fill two-way and get to passenger" do
-		$TravelFlightPage.fill_flight_return_details
-		expect($TravelPassengerPage).to be_present
-  	end
-  
-  	it "can fill one-way and get to passenger" do
-		$TravelFlightPage.fill_flight_oneway_details
-		expect($TravelPassengerPage).to be_present
-  	end
+```ruby
+group :development, :test do
+  gem 'shiken', '~> 0.1'
 end
 
+group :development, :test do
+  gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'colorize'
+  gem 'shiken', '~> 0.1'
+end
 ```
+
+Download and install by running:
+
+```
+bundle install
+```
+
+Initialize the `webtests/` directory (where specs will reside) with:
+
+```
+rails generate rspec:install
+```
+
+This adds the following example test suites that demonstrate how to use shiken:
+
+- `webtests/google`    # simple tests of google site
+- `webtests/travel`    # more complex example of tests of **[agile travel](http://travel.agileway.net)**
+
+Each example must be run independently. Check the code in the files for more information.
+
+Use the `rspec` command to run the example specs:
+
+```
+# Run only model specs
+rspec webtests/google
+
+# Run only model specs
+rspec webtests/travel
+```
+
+By default the above will run all `_spec.rb` files in the `webtests` directory. For
+more details about this see the [RSpec spec file
+docs](https://www.relishapp.com/rspec/rspec-core/docs/spec-files).
+
+To run only a subset of these specs use the following command:
+
+```
+# Run only model specs
+bundle exec rspec spec/models
+
+# Run only specs for AccountsController
+bundle exec rspec spec/controllers/accounts_controller_spec.rb
+
+# Run only spec on line 8 of AccountsController
+bundle exec rspec spec/controllers/accounts_controller_spec.rb:8
+```
+
+Specs can also be run via `rake spec` or `bundle exec rspec`, though this command may 
+be slower to start than the `rspec` command.
+
+
+### Upgrade Note
+
+To be determined.
+
+**NOTE:** Generators run in RSpec 3.x will now require `rails_helper` instead
+of `spec_helper`.
+
+### Generators
+
+None as yet.
+
+## Contributing
+
+Not yet ready for other contributors.
+
+## Page Oriented Tests
+
+Use model specs to describe behavior of web pages (usually ActiveRecord-based) in
+the application.
+
+## The Google Example
+
+## The Travel Example
+
+## Routing specs
+
+## Upgrade note
+
+## Also see
+
+* [https://github.com/rspec/rspec](https://github.com/rspec/rspec)
+* [https://github.com/rspec/rspec-rails](https://github.com/rspec/rspec-rails)
+
+## Feature Requests & Bugs
+
+See <http://github.com/pconley/shiken/issues>

@@ -1,4 +1,4 @@
-require 'webtester'
+require 'shiken'
 
 def trace(s)
   puts ">>> #{s}"
