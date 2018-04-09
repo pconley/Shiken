@@ -1,19 +1,29 @@
-# shiken [![Build Status](https://secure.travis-ci.org/rspec/rspec-rails.svg?branch=master)](http://travis-ci.org/rspec/rspec-rails) [![Code Climate](https://img.shields.io/codeclimate/github/rspec/rspec-rails.svg)](https://codeclimate.com/github/rspec/rspec-rails)
-**rspec-rails** is a testing framework for Rails 3.x, 4.x and 5.0.
+# Shiken [試験] #
 
-Use **[rspec-rails 1.x](http://github.com/dchelimsky/rspec-rails)** for Rails
-2.x.
+Shiken is a ruby gem that is a wrapper for selenium.  In our experience, many people write "scripts" using selenium - not "tests".  The difference being you can start a set of tests and walk away... then come back and find out what passed or failed.  Scripts are something you have to watch to see what is going on.  Using rspec is our key to writing tests.  Shiken has been designed, developed and tested with rails and rspec.
+
+There are other similar frameworks... this is just my own way of digging into automation test and techniques (and ruby code for that matter).
+
+Shiken is the Japanese word for test.
+
+## Project Design Philosopy ###
+
+* the test pyramid
+* rely on unit tests
+* but have sanity tests
+* test on production
+* use page oriented tests
+* good tests require programming
+* tests clean up after themselves
+* you can run test individually
+
 
 ## Installation
 
 Add `shiken` to **both** the `:development` and `:test` groups in the
-`Gemfile`:
+`Gemfile`.  Note the other dependencies.
 
 ```ruby
-group :development, :test do
-  gem 'shiken', '~> 0.1'
-end
-
 group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.7'
@@ -39,19 +49,23 @@ This adds the following example test suites that demonstrate how to use shiken:
 - `webtests/google`    # simple tests of google site
 - `webtests/travel`    # more complex example of tests of **[agile travel](http://travel.agileway.net)**
 
-Each example must be run independently. Check the code in the files for more information.
+Each example **must** be run independently. Check the code in the files for more information.  Your task is probably to copy the travel example and adapt ti to your own website.  Note that like the exampls the specs do not necessarily have to be related to the rails application, but can be used independently as a test vehicle.  But, the normal case is as part of the rails project... and correctlydesigned can be run against both localhost and the production system.
 
 Use the `rspec` command to run the example specs:
 
 ```
-# Run only model specs
+# Run only the google specs
 rspec webtests/google
 
-# Run only model specs
+# Run only travel specs
 rspec webtests/travel
+
+# Run only one spec file
+rspec webtests/travel/test01_login_spec.rb
+
 ```
 
-By default the above will run all `_spec.rb` files in the `webtests` directory. For
+By default the above will run all `_spec.rb` files in the `webtests/{example}` directory. For
 more details about this see the [RSpec spec file
 docs](https://www.relishapp.com/rspec/rspec-core/docs/spec-files).
 
